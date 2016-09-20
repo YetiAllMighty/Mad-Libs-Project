@@ -7,12 +7,12 @@
 <body style="text-align: center">
     <h1>Mad Libs!</h1>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-            Enter a noun:<br /> <input type="text" value="<?php $_POST['noun'] ?>"name="noun" /><br />
-            Enter a verb:<br /> <input type="text" value="<?php $_POST['verb'] ?>"name="verb" /><br />
-            Enter an adjective: <br /><input type="text" value="<?php $_POST['adjective'] ?>"name="adjective" /><br />
-            Enter an adverb:<br /> <input type="text" value="<?php $_POST['adverb'] ?>"name="adverb" /><br />
-            <input type="submit" name="submit" value="Make a madlib!" />
-            <input type="reset" name="reset" value="Clear Form">
+        Enter a noun:<br /> <input type="text" value="<?php $_POST['noun'] ?>"name="noun" /><br />
+        Enter a verb:<br /> <input type="text" value="<?php $_POST['verb'] ?>"name="verb" /><br />
+        Enter an adjective: <br /><input type="text" value="<?php $_POST['adjective'] ?>"name="adjective" /><br />
+        Enter an adverb:<br /> <input type="text" value="<?php $_POST['adverb'] ?>"name="adverb" /><br /><br />
+        <input type="submit" name="submit" value="Make a madlib!" />
+        <input type="reset" name="reset" value="Clear Form">
     </form>
 
     <br />
@@ -27,13 +27,15 @@
 
         if(!empty($noun) && !empty($verb) && !empty($adjective) && !empty($adverb))
         {
-            echo "You like to <span style='color:red'>$adverb $verb $adjective $noun</span>'s? How strange... ";
+            //Storing the full string for later use, kept as small mad lib for ease of use
+            echo "You like to <span style=\\'color:red\\'>$adverb $verb $adjective $noun</span>'s? How strange... (Not a very creative story)";
+            $full = "You like to <span style=\\'color:red\\'>$adverb $verb $adjective $noun</span>\\'s? How strange... (Not a very creative story)";
 
             $dbc = mysqli_connect('localhost', 'root', '', 'kthomas')
                     or die("Error connecting to the database");
 
-            $query = "INSERT INTO mad_libs (noun, verb, adjective, adverb, time)"
-                    . "VALUES ('$noun', '$verb', '$adjective', '$adverb', NOW())";
+            $query = "INSERT INTO mad_libs (noun, verb, adjective, adverb, time, full)"
+                    . "VALUES ('$noun', '$verb', '$adjective', '$adverb', NOW(), '$full')";
 
             mysqli_query($dbc, $query)
                     or die("Error querying database");
@@ -44,11 +46,14 @@
             $response = mysqli_query($dbc, $query)
                     or die("Error querying for list");
 
+            //This is where the PHP will output all
+            //previous subs using the "full" field
+            //from the sql data base which stores the
+            //complete text string
             echo "<strong>Previous Submissions: <br /></strong>";
             while($row = mysqli_fetch_array($response)){
-                echo $row['id'] . ": You like to " .  $row['adverb'] . " " . $row['verb']
-                        . " " . $row['adjective'] . " " . $row['noun'] . "'s? How strange... " .$row['time'];
-                echo "<br />";
+                echo $row['full'] . " Time: " . $row['time'] ;
+                echo "<br /><br />";
             }
 
             mysqli_close($dbc);

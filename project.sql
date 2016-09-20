@@ -28,7 +28,7 @@ CREATE TABLE `email_list` (
   `last_name` varchar(20) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `email_list` (
 
 LOCK TABLES `email_list` WRITE;
 /*!40000 ALTER TABLE `email_list` DISABLE KEYS */;
+INSERT INTO `email_list` VALUES (7,'Kyle','Thomas','ex@example.com2');
 /*!40000 ALTER TABLE `email_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,8 +78,9 @@ CREATE TABLE `mad_libs` (
   `adjective` varchar(100) DEFAULT NULL,
   `adverb` varchar(100) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
+  `full` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +89,7 @@ CREATE TABLE `mad_libs` (
 
 LOCK TABLES `mad_libs` WRITE;
 /*!40000 ALTER TABLE `mad_libs` DISABLE KEYS */;
+INSERT INTO `mad_libs` VALUES (1,'rabbit','hurled','ugly','fiercely ','2016-09-19 23:39:41','You like to <span style=\'color:red\'>fiercely  hurled ugly rabbit</span>\'s? How strange... (Not a very creative story)'),(2,'dragon','raze','rainbow','scantily','2016-09-19 23:41:20','You like to <span style=\'color:red\'>scantily raze rainbow dragon</span>\'s? How strange... (Not a very creative story)');
 /*!40000 ALTER TABLE `mad_libs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -99,4 +102,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-15 18:11:59
+-- Dump completed on 2016-09-19 23:45:04
