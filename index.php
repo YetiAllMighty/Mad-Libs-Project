@@ -7,10 +7,10 @@
 <body style="text-align: center">
     <h1>Mad Libs!</h1>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-        Enter a noun:<br /> <input type="text" value="<?php $_POST['noun'] ?>"name="noun" /><br />
-        Enter a verb:<br /> <input type="text" value="<?php $_POST['verb'] ?>"name="verb" /><br />
-        Enter an adjective: <br /><input type="text" value="<?php $_POST['adjective'] ?>"name="adjective" /><br />
-        Enter an adverb:<br /> <input type="text" value="<?php $_POST['adverb'] ?>"name="adverb" /><br /><br />
+        <br /> <input type="text" value="<?php $_POST['noun'] ?>"name="noun" placeholder="Enter a noun"/><br />
+        <br /> <input type="text" value="<?php $_POST['verb'] ?>"name="verb" placeholder="Enter a verb"/><br />
+        <br /><input type="text" value="<?php $_POST['adjective'] ?>"name="adjective" placeholder="Enter an adjective"/><br />
+        <br /> <input type="text" value="<?php $_POST['adverb'] ?>"name="adverb" placeholder="Enter an adverb"/><br /><br />
         <input type="submit" name="submit" value="Make a madlib!" />
         <input type="reset" name="reset" value="Clear Form">
     </form>
